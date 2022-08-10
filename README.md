@@ -1,55 +1,55 @@
-# Moosic_Backend
+# Moosic
 
-## Date: 10 Aug 22
+---
 
-### By: Patrick Knight, Tommy Le, Emily Byrne
+## Date: 8/10/2022 - 8/19/2022
 
-[Trello](https://trello.com/b/t17RUM3i/music-website)
+---
 
-[Heroku]()
+### By: Emily Byrne, Patrick Knight, Tommy Le
 
-***
+---
 
-### ***Description***
+### **_Links_**
+
+[Moosic Frontend](https://github.com/pfknight8/Moosic_Frontend) | [Trello](https://trello.com/b/t17RUM3i/moosic) | [Deployment]()
+
+---
+
+### **_Description_**
+
+#### A description, preferably brief, regarding the project. What it is, why, when, etc.
+
+---
+
+### **_Technologies_**
+
+## PERN
+
+<img alt="PERN" width='450' src="https://www.freecodecamp.org/news/content/images/size/w2000/2020/03/PERN.png" />
+
+### Postgresql, Express, React, Node
+
+### Deployed with Heroku
+
+---
+
+### **_Screenshots_**
 
 
+### Something
 
-***
+---
 
-### ***Technologies Used***
+### **_Future Updates_**
 
-* HTML
-* CSS
-* Javascript
-* React.js
-* Node.js
-* Heroku
+- [ ] Start Coding
+- [ ] Link to Backend
 
-***
+---
 
-### ***Project Overview***
+### **_Credits_**
 
-
-
-***
-
-### ***Screenshots***
-
-![Components]()
-
-![ERD]()
-
-***
-
-### ***Future Changes/Updates***
-
-*
-
-***
-
-### ***Resources***
-
-* [GitHub](https://github.com/)
-* [HTML CSS JS](https://html-css-js.com/css/)
-
-***
+- #### www.freecodecamp.org for 'PERN' logo.
+-
+-
