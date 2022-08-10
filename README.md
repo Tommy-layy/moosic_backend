@@ -1,8 +1,55 @@
+# Moosic_Backend
 
-# moosic_backend
+## Date: 10 Aug 22
 
----
+### By: Patrick Knight, Tommy Le, Emily Byrne
 
-### By: Emily Byrne, Patrick Knight, Tommy Le
+[Trello](https://trello.com/b/t17RUM3i/music-website)
 
----
+[Heroku]()
+
+***
+
+### ***Description***
+
+
+
+***
+
+### ***Technologies Used***
+
+* HTML
+* CSS
+* Javascript
+* React.js
+* Node.js
+* Heroku
+
+***
+
+### ***Project Overview***
+
+
+
+***
+
+### ***Screenshots***
+
+![Components]()
+
+![ERD]()
+
+***
+
+### ***Future Changes/Updates***
+
+*
+
+***
+
+### ***Resources***
+
+* [GitHub](https://github.com/)
+* [HTML CSS JS](https://html-css-js.com/css/)
+
+***
