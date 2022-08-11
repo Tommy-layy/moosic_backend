@@ -1,6 +1,6 @@
 const { Song } = require('../models')
 
-const getSong = async (req, res) => {
+const getAllSongs = async (req, res) => {
   try {
     const Songs = await Song.findAll()
     res.send(Songs)
@@ -9,16 +9,17 @@ const getSong = async (req, res) => {
   }
 }
 
-const getAllSongs = async (req, res) => {
+const getOneSong = async (req, res) => {
   try {
-    const allSongs = await Song.findAll()
-    res.send(allSongs)
+    let songId = parseInt(req.params.song_id)
+    const song = await Song.findByPk(songId)
+    res.send(song)
   } catch (error) {
     throw error
   }
 }
 
 module.exports = {
-  getSong,
-  getAllSongs
+  getAllSongs,
+  getOneSong
 }
