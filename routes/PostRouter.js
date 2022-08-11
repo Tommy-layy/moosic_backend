@@ -1,3 +1,5 @@
+// Kept as an example for our stretch goal.
+
 const router = require('express').Router()
 const controller = require('../controllers/PostController')
 const middleware = require('../middleware')
