@@ -1,5 +1,6 @@
 const { User } = require('../models')
 const middleware = require('../middleware')
+
 const Login = async (req, res) => {
   try {
     const user = await User.findOne({
@@ -8,7 +9,7 @@ const Login = async (req, res) => {
     })
     if (
       user &&
-      (await middleware.comparePassword(user.passwordDigest, req.body.password))
+      (await middleware.comparePassword(user.password, req.body.password))
     ) {
       let payload = {
         id: user.id,
@@ -27,12 +28,13 @@ const Register = async (req, res) => {
   try {
     const { email, password, name } = req.body
     let passwordDigest = await middleware.hashPassword(password)
-    const user = await User.create({ email, passwordDigest, name })
+    const user = await User.create({ email, password, name })
     res.send(user)
   } catch (error) {
     throw error
   }
 }
+
 const UpdatePassword = async (req, res) => {
   try {
     const user = await User.findOne({
@@ -41,12 +43,12 @@ const UpdatePassword = async (req, res) => {
     if (
       user &&
       (await middleware.comparePassword(
-        user.dataValues.passwordDigest,
+        user.dataValues.password,
         req.body.oldPassword
       ))
     ) {
-      let passwordDigest = await middleware.hashPassword(req.body.newPassword)
-      await user.update({ passwordDigest })
+      let password = await middleware.hashPassword(req.body.newPassword)
+      await user.update({ password })
       return res.send({ status: 'Success', msg: 'Password updated' })
     }
     res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
@@ -54,6 +56,7 @@ const UpdatePassword = async (req, res) => {
     throw error
   }
 }
+
 module.exports = {
   Login,
   Register,
