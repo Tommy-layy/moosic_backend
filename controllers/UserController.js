@@ -43,10 +43,15 @@ const LoginUser = async (req, res) => {
 }
 const RegisterUser = async (req, res) => {
   try {
-    const { email, password, name } = req.body
-    let passwordDigest = await middleware.hashPassword(password)
-    const user = await User.create({ email, passwordDigest, name })
-    res.send(user)
+    const { email, password, username } = req.body
+    let userAlready = await User.findOne({where: { email: email }, raw: true})
+    if(userAlready) {
+      res.status(401).send({ status: 'Error', msg: 'Unauthorized'})
+    } else {
+      let passwordDigest = await middleware.hashPassword(password)
+      const user = await User.create({ email, password: passwordDigest, username })
+      res.send(user)
+    }
   } catch (error) {
     throw error
   }
