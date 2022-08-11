@@ -1,3 +1,5 @@
+// This is just for example, will delete when done.
+
 const { User } = require('../models')
 const middleware = require('../middleware')
 

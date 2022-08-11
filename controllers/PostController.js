@@ -1,3 +1,5 @@
+// Keep this as part of our stretch goal.
+
 const { Post } = require('../models')
 
 const GetPosts = async (req, res) => {
