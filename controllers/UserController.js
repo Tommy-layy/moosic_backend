@@ -1,10 +1,20 @@
-const { User } = require('../models')
+const { User, Playlist } = require('../models')
 const middleware = require('../middleware')
 
-const getUser = async (req, res) => {
+const getAllUser = async (req, res) => {
   try {
     const users = await User.findAll()
     res.send(users)
+  } catch (error) {
+    throw error
+  }
+}
+
+const getOneUser = async (req, res) => {
+  try {
+    let userId = parseInt(req.params.user_id)
+    const user = await User.findByPk(userId, {include: [{model: Playlist}]})
+    res.send(user)
   } catch (error) {
     throw error
   }
@@ -58,7 +68,8 @@ const RegisterUser = async (req, res) => {
   }
 }
 module.exports = {
-  getUser,
+  getAllUser,
+  getOneUser,
   createUser,
   LoginUser,
   RegisterUser
