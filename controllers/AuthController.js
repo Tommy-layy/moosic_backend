@@ -1,8 +1,5 @@
-// This is just for example, will delete when done.
-
 const { User } = require('../models')
 const middleware = require('../middleware')
-
 const Login = async (req, res) => {
   try {
     const user = await User.findOne({
@@ -26,41 +23,25 @@ const Login = async (req, res) => {
   }
 }
 
-const Register = async (req, res) => {
+const SignUp = async (req, res) => {
   try {
-    const { email, password, name } = req.body
-    let passwordDigest = await middleware.hashPassword(password)
-    const user = await User.create({ email, password, name })
+    const { email, name, username } = req.body
+    let rawPassword = req.body.password
+    let password = await middleware.hashPassword(rawPassword)
+    const user = await User.create({ email, password, name, username })
     res.send(user)
   } catch (error) {
     throw error
   }
 }
 
-const UpdatePassword = async (req, res) => {
-  try {
-    const user = await User.findOne({
-      where: { email: req.body.email }
-    })
-    if (
-      user &&
-      (await middleware.comparePassword(
-        user.dataValues.password,
-        req.body.oldPassword
-      ))
-    ) {
-      let password = await middleware.hashPassword(req.body.newPassword)
-      await user.update({ password })
-      return res.send({ status: 'Success', msg: 'Password updated' })
-    }
-    res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
-  } catch (error) {
-    throw error
-  }
+const CheckLogin = async (req, res) => {
+  const { payload } = res.locals
+  res.send(payload)
 }
 
 module.exports = {
   Login,
-  Register,
-  UpdatePassword
+  SignUp,
+  CheckLogin
 }
