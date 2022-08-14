@@ -1,4 +1,5 @@
 const { Song } = require('../models')
+const { Op } = require('sequelize')
 
 // const getAllSongs = async (req, res) => {
 //   try {
@@ -12,7 +13,23 @@ const { Song } = require('../models')
 const getFilteredSongs = async (req, res) => {
   try {
     let songQuery = req.query
-    const queriedSongs = await Song.findAll({where: songQuery})
+    const getQueriedSongs = async (songQuery) => {
+      const songArr = [];
+      for (let [key,  value] of Object.entries(songQuery)) {
+        let result = await Song.findAll({ where: { [`${key}`]: {[Op.iLike]: `%${value}%` }}, raw: true })
+        songArr.push(...result)
+      }
+
+      // For each...want to ask about this, because it wouldn't work this way.
+      // Object.entries(songQuery).forEach( async ([key, value]) => {
+      //   let result = await Song.findAll({ where: { [`${key}`]: {[Op.like]: `%${value}%` }}, raw: true })
+      //   console.log(result)
+      //   songArr.push(...result)
+      // })
+
+      return songArr
+    }
+    let queriedSongs = await getQueriedSongs(songQuery)
     res.send(queriedSongs)
   } catch (error) {
     throw error
