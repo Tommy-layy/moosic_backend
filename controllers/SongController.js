@@ -1,9 +1,19 @@
 const { Song } = require('../models')
 
-const getAllSongs = async (req, res) => {
+// const getAllSongs = async (req, res) => {
+//   try {
+//     const Songs = await Song.findAll()
+//     res.send(Songs)
+//   } catch (error) {
+//     throw error
+//   }
+// }
+
+const getFilteredSongs = async (req, res) => {
   try {
-    const Songs = await Song.findAll()
-    res.send(Songs)
+    let songQuery = req.query
+    const queriedSongs = await Song.findAll({where: songQuery})
+    res.send(queriedSongs)
   } catch (error) {
     throw error
   }
@@ -20,6 +30,7 @@ const getOneSong = async (req, res) => {
 }
 
 module.exports = {
-  getAllSongs,
+  // getAllSongs,
+  getFilteredSongs,
   getOneSong
 }
