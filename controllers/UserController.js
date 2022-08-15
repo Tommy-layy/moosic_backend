@@ -67,10 +67,17 @@ const RegisterUser = async (req, res) => {
     throw error
   }
 }
+
+const CheckLogin = async (req, res) => {
+  const { payload } = res.locals
+  res.send(payload)
+}
+
 module.exports = {
   getAllUser,
   getOneUser,
   createUser,
   LoginUser,
-  RegisterUser
+  RegisterUser,
+  CheckLogin
 }
