@@ -12,7 +12,10 @@ const getPlaylist = async (req, res) => {
 const getPlaylistByUser = async (req, res) => {
   try {
     let userId = parseInt(req.params.user_id)
-    const userPlaylist = await Playlist.findAll({where: {userId: userId}})
+    const userPlaylist = await Playlist.findAll({
+      where: {userId: userId},
+      include: {model: Song, as: 'songs', through: {attributes: []}}
+    })
     res.send(userPlaylist)
   } catch (error) {
     throw error
