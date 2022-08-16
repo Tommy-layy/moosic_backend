@@ -13,5 +13,7 @@ Router.get(
   middleware.verifyToken,
   controller.CheckLogin
 )
+Router.put('/:user_id', controller.updateUser)
+Router.delete('/:user_id', controller.deleteUser)
 
 module.exports = Router
