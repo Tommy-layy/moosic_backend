@@ -79,17 +79,27 @@ const CheckLogin = async (req, res) => {
 }
 const updateUser = async (req, res) => {
   try {
-    let user_id = parseInt(req.params.user_id)
-    let newInfo = await User.update(
-      { username: req.body.username, password: req.body.password },
-      {
-        where: {
-          id: user_id
-        },
-        returning: true
-      }
-    )
-    res.send(newInfo)
+    let userId = parseInt(req.params.user_id)
+    let { oldPassword, newPassword } = req.body
+    const user = await User.findByPk(userId)
+    if (
+      user &&
+      (await middleware.comparePassword(user.dataValues.password, oldPassword))
+    ) {
+      let passwordDigest = await middleware.hashPassword(newPassword)
+      let newInfo = await User.update(
+        { email: req.params.email, username: req.params.username, password: passwordDigest },
+        {
+          where: {
+          id: userId
+          },
+          returning: true
+        }
+      )
+      res.send(newInfo)
+    } else {
+      res.send({message: 'Error! Unable to update user info.'})
+    }
   } catch (error) {
     throw error
   }
