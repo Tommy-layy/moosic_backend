@@ -8,5 +8,6 @@ Router.post('/:user_id', controller.createPlaylist)
 Router.put('/:playlist_id', controller.updatePlaylist)
 Router.delete('/:playlist_id', controller.deletePlaylist)
 Router.post('/addsong/:playlist_id/:song_id', controller.addSongsToPlaylist)
+Router.delete('/addsong/:playlist_id/:song_id', controller.removeSongFromPlaylist)
 
 module.exports = Router

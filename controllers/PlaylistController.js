@@ -83,6 +83,22 @@ const addSongsToPlaylist = async (req, res) => {
   }
 }
 
+const removeSongFromPlaylist = async (req, res) => {
+  try {
+    let playlistId = parseInt(req.params.playlist_id)
+    let songId = parseInt(req.params.song_id)
+    let playlist_song = await Playlist_song.findOne({ where: {playlistId: playlistId, songId: songId}})
+    if (playlist_song) {
+      await Playlist_song.destroy({ where: {playlistId: playlistId, songId: songId}})
+      res.send({message: `Song deleted from playlist`})
+    } else {
+      res.send({message: `Error, song not found/unable to delete.`})
+    }
+  } catch (error) {
+    throw error
+  }
+}
+
 const deletePlaylist = async (req, res) => {
   try {
     let playlistId = parseInt(req.params.playlist_id)
@@ -104,5 +120,6 @@ module.exports = {
   createPlaylist,
   updatePlaylist,
   addSongsToPlaylist,
+  removeSongFromPlaylist,
   deletePlaylist
 }
