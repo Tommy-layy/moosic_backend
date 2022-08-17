@@ -77,7 +77,7 @@ const CheckLogin = async (req, res) => {
   const { payload } = res.locals
   res.send(payload)
 }
-const updateUser = async (req, res) => {
+const updateUserPassword = async (req, res) => {
   try {
     let userId = parseInt(req.params.user_id)
     let { oldPassword, newPassword } = req.body
@@ -88,7 +88,7 @@ const updateUser = async (req, res) => {
     ) {
       let passwordDigest = await middleware.hashPassword(newPassword)
       let newInfo = await User.update(
-        { email: req.params.email, username: req.params.username, password: passwordDigest },
+        { username: req.body.username, password: passwordDigest },
         {
           where: {
           id: userId
@@ -99,6 +99,64 @@ const updateUser = async (req, res) => {
       res.send(newInfo)
     } else {
       res.send({message: 'Error! Unable to update user info.'})
+    }
+  } catch (error) {
+    throw error
+  }
+}
+
+const updateUserUsername = async (req, res) => {
+  try {
+    let userId = parseInt(req.params.user_id)
+    let { password } = req.body
+    let newUsername = req.body.username
+    const user = await User.findByPk(userId)
+    let usernameTaken = await User.findOne({ where: { username: newUsername } })
+    if (
+      !usernameTaken && user &&
+      (await middleware.comparePassword(user.dataValues.password, password))
+    ) {
+      let newInfo = await User.update(
+        { username: newUsername },
+        {
+          where: {
+          id: userId
+          },
+          returning: true
+        }
+      )
+      res.send(newInfo)
+    } else {
+      res.send({message: 'Error! Unable to update username! Invalid, or already taken.'})
+    }
+  } catch (error) {
+    throw error
+  }
+}
+
+const updateUserEmail = async (req, res) => {
+  try {
+    let userId = parseInt(req.params.user_id)
+    let { password } = req.body
+    let newEmail = req.body.email
+    const user = await User.findByPk(userId)
+    let emailTaken = await User.findOne({ where: { email: newEmail } })
+    if (
+      !emailTaken && user &&
+      (await middleware.comparePassword(user.dataValues.password, password))
+    ) {
+      let newInfo = await User.update(
+        { email: newEmail },
+        {
+          where: {
+          id: userId
+          },
+          returning: true
+        }
+      )
+      res.send(newInfo)
+    } else {
+      res.send({message: 'Error! Unable to update  email address!'})
     }
   } catch (error) {
     throw error
@@ -124,6 +182,8 @@ module.exports = {
   LoginUser,
   RegisterUser,
   CheckLogin,
-  updateUser,
+  updateUserPassword,
+  updateUserUsername,
+  updateUserEmail,
   deleteUser
 }
