@@ -46,8 +46,9 @@ const LoginUser = async (req, res) => {
       }
       let token = middleware.createToken(payload)
       return res.send({ user: payload, token })
+    } else {
+      res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
     }
-    res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
   } catch (error) {
     throw error
   }
@@ -77,6 +78,7 @@ const CheckLogin = async (req, res) => {
   const { payload } = res.locals
   res.send(payload)
 }
+
 const updateUserPassword = async (req, res) => {
   try {
     let userId = parseInt(req.params.user_id)
@@ -88,7 +90,7 @@ const updateUserPassword = async (req, res) => {
     ) {
       let passwordDigest = await middleware.hashPassword(newPassword)
       let newInfo = await User.update(
-        { username: req.body.username, password: passwordDigest },
+        { password: passwordDigest },
         {
           where: {
           id: userId
@@ -165,12 +167,20 @@ const updateUserEmail = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     let userId = parseInt(req.params.user_id)
-    await User.destroy({
-      where: {
-        id: userId
-      }
-    })
-    res.send({ msg: 'Account has been deleted!' })
+    let { password } = req.body
+    const user = await User.findByPk(userId)
+    if (user &&
+      (await middleware.comparePassword(user.dataValues.password, password))
+    ) {
+      await User.destroy({
+        where: {
+          id: userId
+        }
+      })
+      res.send({ message: 'Account has been deleted!' })
+    } else {
+      res.send({ message: 'Unable to delete account!' })
+    }
   } catch (error) {
     throw error
   }
