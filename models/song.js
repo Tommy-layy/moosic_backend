@@ -17,10 +17,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Song.init(
     {
-      title: DataTypes.STRING,
+      name: DataTypes.STRING,
       time: DataTypes.INTEGER,
       artist: DataTypes.STRING,
-      genre: DataTypes.STRING,
+      album: DataTypes.STRING,
       image: DataTypes.STRING
     },
     {
