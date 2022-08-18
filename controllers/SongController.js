@@ -9,7 +9,6 @@ const getFilteredSongs = async (req, res) => {
       Songs = Songs.filter((song) =>
         song[key].toLowerCase().includes(value.toLowerCase())
       )
-      console.log(Songs)
     }
     res.send(Songs)
   } catch (error) {
@@ -20,7 +19,6 @@ const getFilteredSongs = async (req, res) => {
 const findMatchingSong = async (req, res) => {
   try{
     let songQuery = req.query.name
-    console.log(songQuery)
     let songFound = await Song.findOne({
       where: {name: songQuery},
       raw: true
