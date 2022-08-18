@@ -8,6 +8,8 @@
 
 ### By: Emily Byrne, Patrick Knight, Tommy Le
 
+[Emily Byrne](https://www.linkedin.com/in/emilybyrne3/) | [Patrick Knight](https://www.linkedin.com/in/patrick-f-knight/) | [Tommy Le](https://www.linkedin.com/in/tommyyle/)
+
 ---
 
 ### **_Links_**
@@ -18,7 +20,7 @@
 
 ### **_Description_**
 
-This is the backend portion of Moosic, a music app where users are able to browse for songs and create their own playlist.
+Moosic, a music app where users are able to browse for songs as well as create playlists where they can add their favorite songs! 
 
 ---
 
@@ -52,3 +54,4 @@ We'll have some SS/Images here
 ### **_Credits_**
 
 * www.freecodecamp.org for 'PERN' logo
+* Other resources
