@@ -17,6 +17,24 @@ const getFilteredSongs = async (req, res) => {
   }
 }
 
+const findMatchingSong = async (req, res) => {
+  try{
+    let songQuery = req.query.name
+    console.log(songQuery)
+    let songFound = await Song.findOne({
+      where: {name: songQuery},
+      raw: true
+    })
+    if (songFound) {
+      res.send(songFound)
+    } else {
+      res.send({message: 'song not in database'})
+    }
+  } catch (error) {
+    throw error
+  }
+}
+
 const getOneSong = async (req, res) => {
   try {
     let songId = parseInt(req.params.song_id)
@@ -36,6 +54,7 @@ const addSong = async (req, res) => {
 }
 module.exports = {
   getFilteredSongs,
+  findMatchingSong,
   getOneSong,
   addSong
 }
