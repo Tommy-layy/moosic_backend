@@ -12,23 +12,24 @@
 
 ### **_Links_**
 
-[Moosic Frontend](https://github.com/pfknight8/Moosic_Frontend) | [Trello](https://trello.com/b/t17RUM3i/moosic) | [Deployment]()
+[Moosic Frontend](https://github.com/pfknight8/Moosic_Frontend) | [Trello](https://trello.com/b/t17RUM3i/moosic) | [Backend Deployment](https://moosicbackend.herokuapp.com/)
 
 ---
 
 ### **_Description_**
 
-#### A description, preferably brief, regarding the project. What it is, why, when, etc.
+This is the backend portion of Moosic, a music app where users are able to browse for songs and create their own playlist.
 
 ---
 
 ### **_Technologies_**
 
-## PERN
-
 <img alt="PERN" width='450' src="https://www.freecodecamp.org/news/content/images/size/w2000/2020/03/PERN.png" />
 
-### Postgresql, Express, React, Node
+* PostgreSQL
+* Express
+* React
+* Node
 
 ### Deployed with Heroku
 
@@ -36,20 +37,19 @@
 
 ### **_Screenshots_**
 
-
-### Something
+We'll have some SS/Images here
 
 ---
 
 ### **_Future Updates_**
 
-- [ ] Start Coding
-- [ ] Link to Backend
+- [ ] Link to Frontend 
+- [ ] Another Update
+- [ ] Another Update
+- [ ] Another Update
 
 ---
 
 ### **_Credits_**
 
-- #### www.freecodecamp.org for 'PERN' logo.
--
--
+* www.freecodecamp.org for 'PERN' logo
