@@ -1,5 +1,6 @@
 const { User, Playlist } = require('../models')
 const middleware = require('../middleware')
+const { Op } = require('sequelize')
 
 const getAllUser = async (req, res) => {
   try {
@@ -15,15 +16,6 @@ const getOneUser = async (req, res) => {
     let userId = parseInt(req.params.user_id)
     const user = await User.findByPk(userId, { include: [{ model: Playlist }] })
     res.send(user)
-  } catch (error) {
-    throw error
-  }
-}
-
-const createUser = async (req, res) => {
-  try {
-    let create = await User.create(req.body)
-    res.send(create)
   } catch (error) {
     throw error
   }
@@ -57,9 +49,9 @@ const LoginUser = async (req, res) => {
 const RegisterUser = async (req, res) => {
   try {
     const { email, password, username } = req.body
-    let userAlready = await User.findOne({ where: { email: email }, raw: true })
+    let userAlready = await User.findOne({ where: {[Op.or]:[{ username: username }, {email: email}]}, raw: true })
     if (userAlready) {
-      res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
+      res.send({ status: 'Error', msg: 'Unauthorized' })
     } else {
       let passwordDigest = await middleware.hashPassword(password)
       const user = await User.create({
@@ -188,7 +180,6 @@ const deleteUser = async (req, res) => {
 module.exports = {
   getAllUser,
   getOneUser,
-  createUser,
   LoginUser,
   RegisterUser,
   CheckLogin,
