@@ -30,8 +30,7 @@ This is the backend portion of Moosic, a music app where users are able to brows
 * Express
 * React
 * Node
-
-### Deployed with Heroku
+* Deployed using Heroku
 
 ---
 
