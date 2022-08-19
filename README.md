@@ -35,6 +35,17 @@ Moosic, a music app where users are able to browse for songs as well as create p
 * Deployed using Heroku
 
 ---
+### **_Getting Started_**
+
+- `Fork` & `Clone` this repository.
+- `npm i` to install necessary dependencies.
+
+#### Dependencies include Express, Cors/Morgan, Nodemon, Sequelize. These should already be in the package.json files, but will be good to make sure. Please make sure that your local machine has the proper installations for these, as well.
+
+#### Remember that this repo is only the BACKEND portion of the Moosic project. The FRONTEND portion is availabla via the link provided above.
+
+
+---
 
 ### **_Screenshots_**
 
@@ -42,20 +53,16 @@ Moosic, a music app where users are able to browse for songs as well as create p
 
 <img alt="ERD" width='500' src="./Moosic_ERD.png" />
 
-We'll have some SS/Images here
 
 ---
 
 ### **_Future Updates_**
 
-- [ ] Link to Frontend 
-- [ ] Another Update
-- [ ] Another Update
-- [ ] Another Update
+- [X] ~~Link to Frontend~~
 
 ---
 
 ### **_Credits_**
 
 * www.freecodecamp.org for 'PERN' logo
-* Other resources
+* Deployed with [Heroku](https://www.heroku.com/)
