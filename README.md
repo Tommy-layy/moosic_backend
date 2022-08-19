@@ -38,6 +38,10 @@ Moosic, a music app where users are able to browse for songs as well as create p
 
 ### **_Screenshots_**
 
+#### Entity Relationship Diagram (ERD)
+
+<img alt="ERD" width='500' src="./Moosic_ERD.png" />
+
 We'll have some SS/Images here
 
 ---
